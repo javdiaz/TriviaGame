@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+
+</head>
+<body>
+<h1>VINTAGE MONSTER TRIVIA</h1>
+
+<h2 class="" id="trivia-question"></h2>
+<h3 class="score" id="correct-answer"></h3>
+<h3 class="score" id="incorrect-answer"></h3>
+
+<div class="choice" id="choice1"></div>
+<div class="choice" id="choice2"></div>
+<div class="choice" id="choice3"></div>
+<div class="choice" id="choice4"></div>
+
+<div class="trivia-image"></img>
+
+<!-- <h3 class="score" id="countdown"></h3> -->
+
+
+
+<div>
+<button id="restart">Restart The Game!</button>
+</div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+//alternate array of objects
+
+var correct = 0;
+var incorrect = 0;
+var deadAudio = new Audio("assets/audio/funeral.wav");
+var quiz = [
+{question: "What was Dracula?",
+ image:'<img id="image" src="assets/images/dracula.jpg"/>',
+ choices:["King of Vampyres", "A Lycanthrope", "A thousand year old Pharoh", "A serial killer"],
+ correct:"King of Vampyres"},
+{question: "His name is Frankenstien but..?",
+ image:'<img id="image" src="assets/images/frank.jpg"/>',
+ choices:["Experiment 206", "Trumpenstien", "Frankenstiens Monster", "The Wanted"],
+ correct:"Frankenstiens Monster"},
+{question: "This type of Monster is a..?",
+ image:'<img id="image" src="assets/images/creature2.jpg"/>',
+ choices:["A Laboratory Monster", "A Sea Creature", "A Giant Monster", "A Lycanthrope"],
+ correct:"A Sea Creature"},
+ {question: "Over a 1,000 years ago, I was a..?",
+ image:'<img id="image" src="assets/images/mummy.jpg"/>',
+ choices:["A time traveller", "King of Vampyres", "A mad scientest", "A Pharoh"],
+ correct:"A Pharoh"}
+];
+
+
+
+// console.log(quiz[3].choices[3]);
+deadAudio.play();
+setTimeout(question1, 1000);
+setTimeout(question2, 7000);
+setTimeout(question3, 14000);
+setTimeout(question4, 21000);
+setTimeout(timeUp, 28000);
+
+
+
+
+function question1() {
+$("#trivia-question").append(quiz[0].question);
+$("#choice1").html(quiz[0].choices[0]);
+$("#choice2").html(quiz[0].choices[1]);
+$("#choice3").html(quiz[0].choices[2]);
+$("#choice4").html(quiz[0].choices[3]);
+$(".trivia-image").html(quiz[0].image);
+};
+
+function question2() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[1].question);
+$("#choice1").html(quiz[1].choices[0]);
+$("#choice2").html(quiz[1].choices[1]);
+$("#choice3").html(quiz[1].choices[2]);
+$("#choice4").html(quiz[1].choices[3]);
+$(".trivia-image").html(quiz[1].image);
+};
+
+function question3() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[2].question);
+$("#choice1").html(quiz[2].choices[0]);
+$("#choice2").html(quiz[2].choices[1]);
+$("#choice3").html(quiz[2].choices[2]);
+$("#choice4").html(quiz[2].choices[3]);
+$(".trivia-image").html(quiz[2].image);
+};
+
+function question4() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[3].question);
+$("#choice1").html(quiz[3].choices[0]);
+$("#choice2").html(quiz[3].choices[1]);
+$("#choice3").html(quiz[3].choices[2]);
+$("#choice4").html(quiz[3].choices[3]);
+$(".trivia-image").html(quiz[3].image);
+};
+
+function timeUp(){
+$("#trivia-question").empty();
+$(".choice").empty();
+$(".trivia-image").empty();
+$("#trivia-question").append("TIME IS UP!");
+$("#correct-answer").append("you answered " + correct + " correct!");
+$("#incorrect-answer").append("you answered " + incorrect + " incorrect!");
+deadAudio.pause();
+}
+
+
+
+
+
+
+
+
+})//end document.ready
+
+
+
+ 
+	
+	
+	
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

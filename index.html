@@ -3,34 +3,92 @@
 <head>
 	<title>Trivia Game</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+
 </head>
 <body>
-<h1>Monster Triva</h1>
+<h1>MONSTER TRIVIA</h1>
 
-<h2 class="trivia-question"></h2>
+<h2 class="" id="correctguess"></h2>
 
-<img class="trivia-image" src="#"></img>
+<h2 class="" id="trivia-question"></h2>
 
+<div class="answer" id="answer1"></div>
+<div class="answer" id="answer2"></div>
+<div class="answer" id="answer3"></div>
+<div class="answer" id="answer4"></div>
 
+<div class="trivia-image"></img>
 
-<h3 id="correct-answer"></h3>
-<h3 id="incorrect-answer"></h3>
+<h3 class="" id="countdown"></h3>
+<h3 class="" id="correct-answer"></h3>
+<h3 class="" id="incorrect-answer"></h3>
 
 <button id=restart>Restart The Game!</button>
 
 
-
-
 <script type="text/javascript">
+
+var correct = 0;
+var incorrect = 0;
+var questions = ["What is Dracula?", "His name is not Frankenstien, but...", "This Monster is a.."];
+var rightAnswers = ["a vampire", "Frankenstien's Monster", "Sea Creature"];
+var wrongAnswers = ["a dog", "a cat", "a mouse"];
+
+
+
+setTimeout(question1, 7000);
+setTimeout(question2, 14000);
+setTimeout(question3, 21000);
+
+
+ function question1() {
+ 	
+        $("#trivia-question").append(questions[0]);
+        $("#answer1").html(rightAnswers[0]);
+        $("#answer2").html(wrongAnswers[0]);
+        $("#answer3").html(wrongAnswers[1]);
+        $("#answer4").html(wrongAnswers[2]);
+        $(".trivia-image").html('<img id="image" src="assets/images/dracula.jpg"/>');
+          };
+      
+ function question2() {
+ 		$("#trivia-question").empty();
+        $(".answer").empty();
+        // $("#trivia-image").empty();
+        $("#trivia-question").append(questions[1]);
+        $("#answer1").html(rightAnswers[1]);
+        $("#answer2").html(wrongAnswers[0]);
+        $("#answer3").html(wrongAnswers[1]);
+        $("#answer4").html(wrongAnswers[2]);
+        $(".trivia-image").html('<img id="image" src="assets/images/frank.jpg"/>');
+          };
+
+  function question3() {
+ 		$("#trivia-question").empty();
+        $(".answer").empty();
+		// $("#trivia-image").empty();
+        $("#trivia-question").append(questions[2]);
+        $("#answer1").html(rightAnswers[2]);
+        $("#answer2").html(wrongAnswers[0]);
+        $("#answer3").html(wrongAnswers[1]);
+        $("#answer4").html(wrongAnswers[2]);
+        $(".trivia-image").html('<img id="image" src="assets/images/creature2.jpg"/>');
+          };
+
+
+
+ 
+	
+	
 	
 
 
 
 
 
-	
+
 </script>
 
 </body>
