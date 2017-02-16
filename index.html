@@ -8,74 +8,157 @@
 
 </head>
 <body>
-<h1>MONSTER TRIVIA</h1>
-
-<h2 class="" id="correctguess"></h2>
+<h1>VINTAGE MONSTER TRIVIA</h1>
 
 <h2 class="" id="trivia-question"></h2>
+<h3 class="score" id="correct-answer"></h3>
+<h3 class="score" id="incorrect-answer"></h3>
+<div id="restart"></div>
 
-<div class="answer" id="answer1"></div>
-<div class="answer" id="answer2"></div>
-<div class="answer" id="answer3"></div>
-<div class="answer" id="answer4"></div>
+<div class="choice" id="choice1"></div>
+<div class="choice" id="choice2"></div>
+<div class="choice" id="choice3"></div>
+<div class="choice" id="choice4"></div>
 
 <div class="trivia-image"></img>
 
-<h3 class="" id="countdown"></h3>
-<h3 class="" id="correct-answer"></h3>
-<h3 class="" id="incorrect-answer"></h3>
-
-<button id=restart>Restart The Game!</button>
+<!-- <h3 class="score" id="countdown"></h3> -->
 
 
 <script type="text/javascript">
 
+$(document).ready(function(){
+
+
 var correct = 0;
 var incorrect = 0;
-var questions = ["What is Dracula?", "His name is not Frankenstien, but...", "This Monster is a.."];
-var rightAnswers = ["a vampire", "Frankenstien's Monster", "Sea Creature"];
-var wrongAnswers = ["a dog", "a cat", "a mouse"];
+//var for the audio
+var scareyAudio = new Audio("assets/audio/funeral.wav");
+//array of object to contain the question, image, choices[array],correct choice
+var lockChoice = false;
+var gameOver = false;
+
+var quiz = [
+{question: "What was Dracula?",
+ image:'<img id="image" src="assets/images/dracula.jpg"/>',
+ choices:["King of Vampyres", "A Lycanthrope", "A thousand year old Pharoh", "A serial killer"],
+ correct:"a. King of Vampyres"},
+{question: "His name is Frankenstien but..?",
+ image:'<img id="image" src="assets/images/frank.jpg"/>',
+ choices:["Experiment 206", "Trumpenstien", "Frankenstiens Monster", "The Wanted"],
+ correct:"Frankenstiens Monster"},
+{question: "This type of Monster is a..?",
+ image:'<img id="image" src="assets/images/creature2.jpg"/>',
+ choices:["A Laboratory Monster", "A Sea Creature", "A Giant Monster", "A Lycanthrope"],
+ correct:"A Sea Creature"},
+ {question: "Over a 1,000 years ago, I was a..?",
+ image:'<img id="image" src="assets/images/mummy.jpg"/>',
+ choices:["A time traveller", "King of Vampyres", "A mad scientest", "A Pharoh"],
+ correct:"A Pharoh"},
+ {question: "In America I'm Godzilla, but in Japan I'm..?",
+ image:'<img id="image" src="assets/images/gojira.jpg"/>',
+ choices:["Tetsujun 28", "Gojira", "King Kong", "Gigantor"],
+ correct:"Gojira"},
+];
+
+//start the setTimeout feature for the questions
+
+
+function timer(){
+scareyAudio.play();	
+setTimeout(question1, 1000);
+setTimeout(question2, 7000);
+setTimeout(question3, 14000);
+setTimeout(question4, 21000);
+setTimeout(question5, 28000);
+setTimeout(timeUp, 36000);
+};
+timer();
 
 
 
-setTimeout(question1, 7000);
-setTimeout(question2, 14000);
-setTimeout(question3, 21000);
+
+//general layout of the function
+
+$(".choice").click(function(){
+	var selectedChoice = $(this).prev().val();
+	alert("clicked");
+	alert(this);
+});//end click
+
+function question1() {
+$("#trivia-question").append(quiz[0].question);
+$("#choice1").text(quiz[0].choices[0]);
+$("#choice2").text(quiz[0].choices[1]);
+$("#choice3").text(quiz[0].choices[2]);
+$("#choice4").text(quiz[0].choices[3]);
+$(".trivia-image").html(quiz[0].image);
+};
 
 
- function question1() {
- 	
-        $("#trivia-question").append(questions[0]);
-        $("#answer1").html(rightAnswers[0]);
-        $("#answer2").html(wrongAnswers[0]);
-        $("#answer3").html(wrongAnswers[1]);
-        $("#answer4").html(wrongAnswers[2]);
-        $(".trivia-image").html('<img id="image" src="assets/images/dracula.jpg"/>');
-          };
-      
- function question2() {
- 		$("#trivia-question").empty();
-        $(".answer").empty();
-        // $("#trivia-image").empty();
-        $("#trivia-question").append(questions[1]);
-        $("#answer1").html(rightAnswers[1]);
-        $("#answer2").html(wrongAnswers[0]);
-        $("#answer3").html(wrongAnswers[1]);
-        $("#answer4").html(wrongAnswers[2]);
-        $(".trivia-image").html('<img id="image" src="assets/images/frank.jpg"/>');
-          };
 
-  function question3() {
- 		$("#trivia-question").empty();
-        $(".answer").empty();
-		// $("#trivia-image").empty();
-        $("#trivia-question").append(questions[2]);
-        $("#answer1").html(rightAnswers[2]);
-        $("#answer2").html(wrongAnswers[0]);
-        $("#answer3").html(wrongAnswers[1]);
-        $("#answer4").html(wrongAnswers[2]);
-        $(".trivia-image").html('<img id="image" src="assets/images/creature2.jpg"/>');
-          };
+function question2() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[1].question);
+$("#choice1").text(quiz[1].choices[0]);
+$("#choice2").text(quiz[1].choices[1]);
+$("#choice3").text(quiz[1].choices[2]);
+$("#choice4").text(quiz[1].choices[3]);
+$(".trivia-image").html(quiz[1].image);
+};
+
+function question3() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[2].question);
+$("#choice1").html(quiz[2].choices[0]);
+$("#choice2").html(quiz[2].choices[1]);
+$("#choice3").html(quiz[2].choices[2]);
+$("#choice4").html(quiz[2].choices[3]);
+$(".trivia-image").html(quiz[2].image);
+};
+
+function question4() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[3].question);
+$("#choice1").html(quiz[3].choices[0]);
+$("#choice2").html(quiz[3].choices[1]);
+$("#choice3").html(quiz[3].choices[2]);
+$("#choice4").html(quiz[3].choices[3]);
+$(".trivia-image").html(quiz[3].image);
+};
+
+function question5() {
+$("#trivia-question").empty();
+$(".choice").empty();
+$("#trivia-question").append(quiz[4].question);
+$("#choice1").html(quiz[4].choices[0]);
+$("#choice2").html(quiz[4].choices[1]);
+$("#choice3").html(quiz[4].choices[2]);
+$("#choice4").html(quiz[4].choices[3]);
+$(".trivia-image").html(quiz[4].image);
+};
+
+function timeUp(){
+	$("#restart").click(function(){
+			location.reload();
+		});
+$("#trivia-question").empty();
+$(".choice").empty();
+$(".trivia-image").empty();
+$("#trivia-question").append("TIME IS UP!");
+$("#correct-answer").append("you answered " + correct + " correct!");
+$("#incorrect-answer").append("you answered " + incorrect + " incorrect!");
+$("#restart").append('<button>Restart The Game</button>')
+scareyAudio.pause();
+}
+
+
+
+
+})//end document.ready
 
 
 

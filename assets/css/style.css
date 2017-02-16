@@ -1,11 +1,25 @@
 
+.choice {
+	margin-bottom: 10px;	
+}
 
+.choice:hover {
+	/*background-color: grey;*/
+	color: blue;
+	font-weight: bold
+	/*width: auto;*/
+}
 #trivia-image {
 	width: 300px;
 }
 #image {
 	width: 300px;
 }
+
+#title-image {
+	width: 600px;
+}
+
 
 
 
